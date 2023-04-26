@@ -17,9 +17,15 @@ def test_ingredient():
     }
 
     assert lasanha.name == "massa de lasanha"
-    assert lasanha.__repr__ == f"Ingredient('{lasanha.name}')"
+    assert lasanha.__repr__() == f"Ingredient('{lasanha.name}')"
+    assert lasanha.__repr__() != f"Ingredient('{cheese.name}')"
 
     assert cheese.name == "queijo mussarela"
-    assert cheese.__repr__ == f"Ingredient('{cheese.name}')"
+    assert cheese.__repr__() == f"Ingredient('{cheese.name}')"
+    assert lasanha.__repr__() != f"Ingredient('{cheese.name}')"
 
-    assert lasanha.__hash__ != cheese.__hash__
+    assert lasanha.__hash__() != cheese.__hash__()
+    assert lasanha.__hash__() == lasanha.__hash__()
+
+    assert lasanha == lasanha
+    assert cheese != lasanha
